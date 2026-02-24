@@ -1,0 +1,175 @@
+/* --- VARIABLES DE DISEÑO (Extraídas de la imagen) --- */
+:root {
+    --primary-color: #b84343;      /* Rojo tierra/desgastado de la camisa */
+    --accent-color: #72b391;       /* Verde menta suave del fondo */
+    --bg-dark: #0f1110;            /* Negro profundo para contraste */
+    --bg-sidebar: #1a1d1c;         /* Gris oscuro verdoso */
+    --text-light: #f4f4f4;         /* Blanco roto */
+    --text-muted: #949c98;
+    --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- RESET Y BASE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url(fondo_cv.jpg);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* --- NAVEGACIÓN --- */
+nav {
+    background: rgba(26, 29, 28, 0.9);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--primary-color);
+    text-align: center;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--transition);
+}
+
+nav a:hover, nav a.active {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px rgba(114, 179, 145, 0.5);
+}
+
+/* --- ESTRUCTURA --- */
+.fila {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+.columna {
+    padding: 40px;
+}
+
+.izquierda {
+    flex: 1 1 300px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid #2a2e2c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.derecha {
+    flex: 3 1 600px;
+    background: radial-gradient(circle at top right, #1d2b24, #0f1110);
+    /* Alineación central para el contenido */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+/* --- ELEMENTOS --- */
+h1, h2 {
+    color: yellow;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* FOTO CENTRADA CON EFECTO */
+.img-principal {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 20px; /* Estilo más cuadrado pero suave como la foto */
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(184, 67, 67, 0.3);
+    margin: 20px auto; /* Centrado automático */
+    display: block;
+    transition: var(--transition);
+}
+
+.img-principal:hover {
+    transform: scale(1.03);
+    border-color: #fff; /* Blanco brillante como los accesorios */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* LISTAS IZQUIERDA */
+ul {
+    list-style: none;
+    width: 100%;
+}
+
+ul li {
+    background: rgba(184, 67, 67, 0.1);
+    margin: 12px 0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+ul li:hover {
+    background: rgba(114, 179, 145, 0.15);
+    border-left-color: var(--accent-color);
+    transform: translateX(8px);
+}
+
+/* --- CARDS PROYECTOS --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.card {
+    background: #1c211f;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #2d3330;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    border-color: var(--accent-color);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background: #fff;
+    color: var(--bg-dark);
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 850px) {
+    .fila { flex-direction: column; }
+    .izquierda { border-right: none; border-bottom: 2px solid var(--primary-color); }
+    .img-principal { width: 220px; height: 220px; }
+}
