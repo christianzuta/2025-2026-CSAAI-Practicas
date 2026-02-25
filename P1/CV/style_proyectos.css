@@ -16,7 +16,7 @@ body {
 .hero {
     text-align: center;
     padding: 160px 20px 100px 20px;
-    background: radial-gradient(circle at top, #1f1f26 0%, #0f0f12 60%);
+    background-image:url(vinilo_rotado.jpeg);
 }
 
 .titulo {
@@ -48,6 +48,17 @@ body {
 /* TARJETA VINILO */
 .vinyl-card {
     text-align: center;
+}
+
+/* TÍTULO DEL VINILO (Añadido nuevo) */
+.vinyl-title {
+    font-size: 1.2rem;
+    font-weight: 700; /* Negrita */
+    text-transform: uppercase; /* Todo en mayúsculas */
+    margin-bottom: 15px; /* Espacio entre el título y la imagen del vinilo */
+    text-align: center;
+    color:rgba(177, 220, 20, 0.795);
+    text-shadow: 2px 2px 4px rgba(56, 218, 15, 0.781); /* Sombra para que resalte sobre fondos oscuros */
 }
 
 /* MARCO OSCURO PREMIUM */
