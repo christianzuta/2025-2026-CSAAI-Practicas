@@ -1,0 +1,106 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FONDO OSCURO ESTUDIO */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url(fondo_proyecto.avif);
+    color: #f1f1f1;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 160px 20px 100px 20px;
+    background: radial-gradient(circle at top, #1f1f26 0%, #0f0f12 60%);
+}
+
+.titulo {
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.descripcion {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #b3b3b3;
+    line-height: 1.7;
+}
+
+/* GALERÍA */
+.wall {
+    padding: 120px 140px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+}
+
+/* TARJETA VINILO */
+.vinyl-card {
+    text-align: center;
+}
+
+/* MARCO OSCURO PREMIUM */
+.vinyl-frame {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #111;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.6),
+        0 0 30px rgba(0,0,0,0.4) inset;
+    transition: 0.4s ease;
+}
+
+.vinyl-frame:hover {
+    transform: translateY(-12px);
+    box-shadow:
+        0 35px 80px rgba(0,0,0,0.8),
+        0 0 40px rgba(0,0,0,0.6) inset;
+}
+
+.vinyl-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* INFO */
+.info {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    color: #ccc;
+    backdrop-filter: blur(6px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 70px;
+    }
+
+    .wall {
+        padding: 80px 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
