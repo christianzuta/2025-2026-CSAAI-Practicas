@@ -5,37 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eladio Carrión | CV</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    .hero-images-container {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; /* Para que en móviles se pongan una sobre otra */
+    }
+
+    .img-principal {
+      max-width: 300px; /* Ajusta este valor según prefieras */
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
   <nav>
     <a href="#inicio" class="active">Inicio</a>
     <a href="#proyectos">Proyectos</a>
     <a href="#sobre-eladio">Sobre Eladio </a>
   </nav>
 
-  <!-- HERO SECTION -->
   <section id="inicio" class="hero">
     <div class="hero-content">
       <div class="hero-text">
         <h1>𝔈𝔩𝔞𝔡𝔦𝔬 ℭ𝔞𝔯𝔯𝔦ó𝔫</h1>
         <p class="subtitle">Artista · Compositor · Productor</p>
-        
       </div>
 
-      <div class="hero-image">
-        <img src="eladio_carrion1.jpeg" alt="Eladio Carrión" class="img-principal">
+      <div class="hero-images-container">
+        <img src="eladiocarrion3.jpg" alt="Eladio Carrión" class="img-principal">
+        
+        <img src="eladiocarrion2.jpg" alt="Segunda Imagen Eladio" class="img-principal">
       </div>
     </div>
   </section>
 
-  <!-- SOBRE MÍ -->
   <section id="sobre-eladio" class="section">
-  
     <div class="content-grid">
       <div class="card">
         <h3>Perfil</h3>
@@ -43,34 +57,27 @@
           Rapero, compositor y cantante puertoriqueño-estadounidense de música urbana. Conocido por su voz grave y habilidad lírica.
         </p>
       </div>
-
     </div>
   </section>
 
-  <!-- PROYECTOS -->
   <section id="proyectos" class="section">
     <h2>Más información</h2>
-
     <div class="projects-grid">
       <div class="card">
-        <h3>Álbum Internacional</h3>
+        <h3>El rey del 'Trap Latino'</h3>
         <p>Producción y lanzamiento global con colaboraciones estratégicas.</p>
       </div>
-
       <div class="card">
         <h3>Gira Mundial</h3>
         <p>Eventos en múltiples países con sold out en las principales ciudades.</p>
       </div>
-
       <div class="card">
         <h3>Marca Personal</h3>
         <p>Desarrollo de identidad visual y posicionamiento digital.</p>
-
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2026 Eladio Carrión · Todos los derechos reservados</p>
   </footer>
