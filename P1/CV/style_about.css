@@ -1,0 +1,194 @@
+/* --- VARIABLES DE DISEÑO --- */
+:root {
+    --primary-color: #b84343;      /* Rojo tierra/desgastado */
+    --accent-color: #72b391;       /* Verde menta suave */
+    --bg-dark: #0f1110;            /* Negro profundo */
+    --card-bg: #1c211f;            /* Gris oscuro verdoso */
+    --text-light: #f4f4f4;         /* Blanco roto */
+    --text-muted: #949c98;         /* Gris para textos secundarios */
+    --transition: all 0.4s ease;
+}
+
+/* --- RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* --- NAVEGACIÓN (Igual que en los otros) --- */
+nav {
+    background: rgba(26, 29, 28, 0.9);
+    backdrop-filter: blur(12px);
+    padding: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--primary-color);
+    text-align: center;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--transition);
+}
+
+nav a:hover, nav a.active {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px rgba(114, 179, 145, 0.5);
+}
+
+/* --- HERO SECTION --- */
+.hero-about {
+    text-align: center;
+    padding: 100px 20px 60px 20px;
+    background: radial-gradient(circle at center, #1d2b24, #0f1110);
+}
+
+.titulo {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.descripcion {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* --- CONTENEDOR PRINCIPAL (GRILLA) --- */
+.about-section {
+    padding: 60px 40px 100px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 60px;
+    max-width: 1100px;
+    align-items: center;
+}
+
+/* --- ESTILOS DE IMAGEN --- */
+.image-wrapper {
+    position: relative;
+    border-radius: 20px;
+    padding: 10px;
+    background: var(--card-bg);
+    border: 1px solid #2d3330;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.image-wrapper img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(114, 179, 145, 0.3); /* Brillo verde menta */
+}
+
+/* --- ESTILOS DE TEXTO --- */
+.about-text-col h2 {
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.about-text-col h2:first-child {
+    margin-top: 0;
+}
+
+.about-text-col p {
+    margin-bottom: 20px;
+    color: #cccccc;
+    font-size: 1.05rem;
+}
+
+/* --- LISTA DE AFICIONES --- */
+.hobbies-list {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.hobbies-list li {
+    background: rgba(114, 179, 145, 0.1);
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    color: #e0e0e0;
+}
+
+.hobbies-list li strong {
+    color: var(--accent-color);
+}
+
+.btn-volver {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(184, 67, 67, 0.3);
+}
+
+.btn-volver:hover {
+    background-color: var(--accent-color);
+    box-shadow: 0 8px 20px rgba(114, 179, 145, 0.4);
+    transform: translateY(-3px);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 40px;
+    background: var(--card-bg);
+    color: var(--text-muted);
+    border-top: 1px solid #2d3330;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr; /* Se pone a una sola columna */
+        gap: 40px;
+    }
+    
+    .about-text-col {
+        text-align: center;
+    }
+
+    .hobbies-list li {
+        text-align: left; /* Mantiene la lista legible en móvil */
+    }
+}
