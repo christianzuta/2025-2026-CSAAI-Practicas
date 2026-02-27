@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="style_proyectos.css">
     
     <style>
+        /* CORRECCIÓN DEL FONDO: Obligamos a cargar la imagen correcta */
+        body {
+            background-image: url('fondo_proyectos.jpg') !important;
+            background-color: #0f1110 !important;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
         /* Estilos para asegurar que los títulos se vean bien encima del vinilo */
         .vinyl-card {
             display: flex;
@@ -19,8 +28,8 @@
             font-size: 1.1rem;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 12px; /* Espacio entre título y vinilo */
-            color: #333; /* Cambia según tu diseño */
+            margin-bottom: 12px; 
+            color: #FFB700; /* Color dorado para resaltar con el fondo oscuro */
             letter-spacing: 1px;
             text-align: center;
         }
@@ -35,19 +44,11 @@
 
 <body>
 
-    <nav>
+<nav>
     <a href="index.html">Inicio</a> 
-    
     <a href="proyectos.html" class="active">Proyectos</a> 
-    
-    <a href="index.html#sobre-eladio">Sobre Eladio </a>
+    <a href="about.html">Sobre Eladio</a>
 </nav>
-
-<a href="index.html">Inicio</a> 
-    
-    <a href="proyectos.html" class="active">Proyectos</a> 
-    
-    <a href="about.html">Sobre Eladio </a>
 
 <header class="hero">
     <h1 class="titulo">Proyectos</h1>
@@ -67,7 +68,7 @@
         <div class="vinyl-card">
             <div class="vinyl-title">Sauce Boyz</div>
             <div class="vinyl-frame">
-                <img src="sauceboyz.jpg" alt="Vinilo 1">
+                <img src="sauceboyz.jpg" alt="Vinilo Sauce Boyz">
             </div>
             <div class="info">31 Enero 2020. Este proyecto de 16 
                 canciones, lanzado bajo Rimas Entertainment, 
@@ -85,7 +86,7 @@
         <div class="vinyl-card">
             <div class="vinyl-title">Monarca</div>
             <div class="vinyl-frame">
-                <img src="monarca.jpg" alt="Vinilo 2">
+                <img src="monarca.jpg" alt="Vinilo Monarca">
             </div>
             <div class="info">8 Enero 2021. Es considerado el 
                 proyecto que terminó de coronar a Eladio Carrión 
@@ -101,7 +102,7 @@
         <div class="vinyl-card">
             <div class="vinyl-title">Sen2 Kbrn Vol. 1</div>
             <div class="vinyl-frame">
-                <img src="sen2kbrn.jpeg" alt="Vinilo 3">
+                <img src="sen2kbrn.jpeg" alt="Vinilo Sen2 Kbrn Vol 1">
             </div>
             <div class="info">2 Julio 2021. Eladio se reencuentra 
                 con sus raíces para evolucionar y convertirse en 
@@ -119,7 +120,7 @@
         <div class="vinyl-card">
             <div class="vinyl-title">Sen2 Kbrn Vol. 2</div>
             <div class="vinyl-frame">
-                <img src="sen2kbrnvol2.jpg" alt="Vinilo 4">
+                <img src="sen2kbrnvol2.jpg" alt="Vinilo Sen2 Kbrn Vol 2">
             </div>
             <div class="info">18 Noviembre 2022. El disco sigue 
                 mantenido su esencia unos sonidos muy frescos. 
@@ -139,7 +140,7 @@
         <div class="vinyl-card">
             <div class="vinyl-title">Sol María</div>
             <div class="vinyl-frame">
-                <img src="solmaria.jpeg" alt="Vinilo 5">
+                <img src="solmaria.jpeg" alt="Vinilo Sol Maria">
             </div>
             <div class="info">19 Enero 2024. Este álbum de Eladio 
                 Carrión, es un sincero homenaje a la persona que 
@@ -157,7 +158,7 @@
         <div class="vinyl-card">
             <div class="vinyl-title">DON KBRN</div>
             <div class="vinyl-frame">
-                <img src="donkbrn.jpg" alt="Vinilo 6">
+                <img src="donkbrn.jpg" alt="Vinilo Don Kbrn">
             </div>
             <div class="info">3 Abril 2025. Este proyecto que combina
                 música y narrativa visual para explorar una etapa 
@@ -174,7 +175,5 @@
         </div>
 
     </div>
-</div>
-
-</body>
+</div> </body>
 </html>
