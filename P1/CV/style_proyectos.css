@@ -61,6 +61,26 @@ body {
     text-shadow: 2px 2px 4px rgba(56, 218, 15, 0.781); /* Sombra para que resalte sobre fondos oscuros */
 }
 
+/* ESTILOS PARA LOS ENLACES (CASILLA VERDE) */
+.info a {
+    color: #ffffff; /* Texto en color blanco puro */
+    background-color: #72b391; /* Fondo de la casilla en verde menta */
+    padding: 6px 14px; /* Relleno: 6px arriba/abajo y 14px a los lados */
+    border-radius: 6px; /* Esquinas ligeramente redondeadas */
+    text-decoration: none; /* Quitamos el subrayado feo por defecto */
+    font-weight: bold;
+    display: inline-block; /* Esto permite que la casilla respete el padding y los márgenes */
+    margin-top: 10px; /* Separación con el texto de arriba */
+    transition: all 0.3s ease; /* Hace que el hover sea suave */
+}
+
+/* EFECTO AL PASAR EL RATÓN */
+.info a:hover {
+    background-color: #b84343; /* Cambia a tu rojo desgastado al pasar el ratón (opcional, resalta mucho) */
+    transform: translateY(-3px); /* Da un pequeño salto hacia arriba */
+    box-shadow: 0 5px 15px rgba(184, 67, 67, 0.4); /* Añade una sombra a juego */
+}
+
 /* MARCO OSCURO PREMIUM */
 .vinyl-frame {
     width: 100%;
