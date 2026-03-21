@@ -1,4 +1,3 @@
-/* Reseteo básico e importación de fuente monoespaciada */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -33,7 +32,7 @@ header h1 {
     box-shadow: 0 0 15px rgba(51, 255, 51, 0.2);
 }
 
-/* Panel Superior (Display) */
+/* Panel parte de arriba */
 .display-panel {
     border: 2px solid #33ff33;
     padding: 20px;
@@ -57,11 +56,11 @@ header h1 {
     align-items: center;
     font-size: 2rem;
     font-weight: bold;
-    color: #ff3333; /* Color inicial (asterisco) */
+    color: #ff3333;
 }
 
 .digit-box.revealed {
-    color: #33ff33; /* Color cuando se acierta */
+    color: #33ff33; 
 }
 
 .timer {
@@ -85,7 +84,7 @@ header h1 {
 .message-area.error { color: #ff3333; }
 .message-area.success { color: #33ff33; }
 
-/* Panel Inferior (Controles) */
+/* Panel de la parte de abajo */
 .control-panel {
     border: 2px solid #33ff33;
     padding: 20px;
@@ -113,7 +112,7 @@ button:hover:not(:disabled) {
     background-color: rgba(51, 255, 51, 0.1);
 }
 
-/* Estado de botones numéricos usados */
+/* Uso de números */
 button:disabled {
     border-color: #333;
     color: #333;

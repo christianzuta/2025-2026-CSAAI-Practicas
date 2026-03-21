@@ -1,17 +1,17 @@
-// --- VARIABLES DE ESTADO ---
+// variables de estaso ---
 let secretCode = [];
 let revealedCount = 0;
 let attemptsLeft = 7;
 const MAX_ATTEMPTS = 7;
 let gameActive = false;
 
-// Variables del Cronómetro
+// cronómetro ---
 let timerInterval = null;
 let startTime = 0;
 let elapsedTime = 0;
 let isRunning = false;
 
-// --- ELEMENTOS DEL DOM ---
+// --- DOM ---
 const digitBoxes = [
     document.getElementById('box-0'),
     document.getElementById('box-1'),
@@ -26,7 +26,6 @@ const btnStart = document.getElementById('btn-start');
 const btnStop = document.getElementById('btn-stop');
 const btnReset = document.getElementById('btn-reset');
 
-// --- INICIALIZACIÓN ---
 function initGame() {
     generateSecretCode();
     attemptsLeft = MAX_ATTEMPTS;
