@@ -61,7 +61,7 @@ function generateSecretCode() {
     console.log("Clave secreta (solo para depuración):", secretCode);
 }
 
-// --- LÓGICA DEL JUEGO ---
+// --- Juego (lógica) ---
 function handleNumberClick(e) {
     if (!gameActive) return;
 
@@ -127,7 +127,7 @@ function disableAllButtons() {
     numButtons.forEach(btn => btn.disabled = true);
 }
 
-// --- FUNCIONES DEL CRONÓMETRO ---
+// --- Funciones del cronómetro ---
 function startTimer() {
     if (!isRunning && gameActive) {
         startTime = Date.now() - elapsedTime;
