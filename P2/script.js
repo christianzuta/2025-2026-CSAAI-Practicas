@@ -1,8 +1,8 @@
 // variables de estaso ---
 let secretCode = [];
 let revealedCount = 0;
-let attemptsLeft = 7;
-const MAX_ATTEMPTS = 7;
+let attemptsLeft =7;
+const MAX_ATTEMPTS =7;
 let gameActive = false;
 
 // cronómetro ---
