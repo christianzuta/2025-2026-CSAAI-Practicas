@@ -12,7 +12,7 @@ const imgAlien = new Image();
 imgAlien.src = 'assets/alien.jpg';
 
 const imgExplosion = new Image();
-imgExplosion.src = 'assets/explosion.jpg';
+imgExplosion.src = 'assets/explosion.';
 // ---------------------------------------
 
 // Estado del Juego

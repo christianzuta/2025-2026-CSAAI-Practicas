@@ -22,29 +22,32 @@ canvas {
     background-color: #000;
 }
 
+/* Esto separará la puntuación a la izquierda y las vidas a la derecha */
 #ui-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px;
+    padding: 20px;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Puntuación a un lado, vidas al otro */
     pointer-events: none;
-    text-shadow: 2px 2px #000;
 }
 
 .stat-box {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px #000;
 }
 
+/* Bajamos un poco la barra de energía para que no tape las vidas */
 #energy-container {
     position: absolute;
-    bottom: 20px;
+    top: 60px; /* Lo bajamos de la parte superior */
     right: 20px;
-    width: 150px;
+    width: 180px;
 }
 
 #energy-label {
