@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beat the Word - Práctica 4</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="contenedor-juego">
+        <header>
+            <h1>Beat the Word</h1>
+            <div id="panel-estado" class="panel-info">
+                <p>Nivel: <span id="txt-nivel">1</span></p>
+                <p>Tiempo: <span id="txt-tiempo">0.0</span>s</p>
+                <p>Estado: <span id="txt-estado">Esperando...</span></p>
+            </div>
+        </header>
+
+        <section class="configuracion">
+            <select id="selector-pareja">
+                <option value="casa-cama">Casa / Cama</option>
+                <option value="pato-perro">Pato / Perro</option>
+            </select>
+
+            <select id="selector-nivel-ini">
+                <option value="1">Nivel 1</option>
+                <option value="2">Nivel 2</option>
+                <option value="3">Nivel 3</option>
+                <option value="4">Nivel 4</option>
+                <option value="5">Nivel 5</option>
+            </select>
+
+            <div class="control-audio">
+                <label for="musica-check">Música:</label>
+                <input type="checkbox" id="musica-check">
+            </div>
+        </section>
+
+        <main>
+            <div id="area-palabra" class="banner-palabra">LISTO?</div>
+
+            <div class="cuadricula" id="grid-imagenes">
+                <div class="celda" id="c0"></div>
+                <div class="celda" id="c1"></div>
+                <div class="celda" id="c2"></div>
+                <div class="celda" id="c3"></div>
+                <div class="celda" id="c4"></div>
+                <div class="celda" id="c5"></div>
+                <div class="celda" id="c6"></div>
+                <div class="celda" id="c7"></div>
+            </div>
+        </main>
+
+        <footer>
+            <button id="btn-inicio">Comenzar</button>
+            <button id="btn-detener" disabled>Detener</button>
+        </footer>
+    </div>
+
+    <audio id="musica-fondo" loop>
+        <source src="tu-audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="codigo.js"></script>
+</body>
+</html>
