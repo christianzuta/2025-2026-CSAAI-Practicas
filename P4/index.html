@@ -3,65 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beat the Word - Práctica 4</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>Beat The Word</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="contenedor-juego">
-        <header>
-            <h1>Beat the Word</h1>
-            <div id="panel-estado" class="panel-info">
-                <p>Nivel: <span id="txt-nivel">1</span></p>
-                <p>Tiempo: <span id="txt-tiempo">0.0</span>s</p>
-                <p>Estado: <span id="txt-estado">Esperando...</span></p>
+    <div class="main-container">
+        <header class="top-bar">
+            <div class="logo-area">
+                <h1>Beat The Word</h1>
+                <p>Sigue la secuencia al ritmo del Beat</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-box"><span>Nivel</span><b id="txt-nivel">1/5</b></div>
+                <div class="stat-box"><span>Tiempo</span><b id="txt-tiempo">0.0s</b></div>
+                <div class="stat-box"><span>Estado</span><b id="txt-estado">En espera</b></div>
             </div>
         </header>
 
-        <section class="configuracion">
-            <select id="selector-pareja">
-                <option value="casa-cama">Casa / Cama</option>
-                <option value="pato-perro">Pato / Perro</option>
-            </select>
+        <div class="content-layout">
+            <aside class="sidebar">
+                <div class="info-card">
+                    <h3>Cómo funciona</h3>
+                    <p>El juego recorre siempre las 8 imágenes de izquierda a derecha y de arriba abajo. En cada paso solo se ilumina una.</p>
+                </div>
 
-            <select id="selector-nivel-ini">
-                <option value="1">Nivel 1</option>
-                <option value="2">Nivel 2</option>
-                <option value="3">Nivel 3</option>
-                <option value="4">Nivel 4</option>
-                <option value="5">Nivel 5</option>
-            </select>
+                <div class="config-card">
+                    <h3>Configuración</h3>
+                    <label>Secuencia</label>
+                    <select id="selector-pareja">
+                        <option value="casa-cama">Casa / Cama</option>
+                    </select>
 
-            <div class="control-audio">
-                <label for="musica-check">Música:</label>
-                <input type="checkbox" id="musica-check">
-            </div>
-        </section>
+                    <label>Nivel inicial</label>
+                    <select id="selector-nivel-ini">
+                        <option value="1">Nivel 1</option>
+                        <option value="2">Nivel 2</option>
+                        <option value="3">Nivel 3</option>
+                        <option value="4">Nivel 4</option>
+                        <option value="5">Nivel 5</option>
+                    </select>
+                </div>
 
-        <main>
-            <div id="area-palabra" class="banner-palabra">LISTO?</div>
+                <div class="actions-card">
+                    <button id="btn-inicio" class="btn-primary">Empezar partida</button>
+                    <button id="btn-detener" class="btn-secondary" disabled>Detener</button>
+                </div>
+            </aside>
 
-            <div class="cuadricula" id="grid-imagenes">
-                <div class="celda" id="c0"></div>
-                <div class="celda" id="c1"></div>
-                <div class="celda" id="c2"></div>
-                <div class="celda" id="c3"></div>
-                <div class="celda" id="c4"></div>
-                <div class="celda" id="c5"></div>
-                <div class="celda" id="c6"></div>
-                <div class="celda" id="c7"></div>
-            </div>
-        </main>
+            <main class="game-main">
+                <div class="top-row">
+                    <div id="active-preview" class="preview-box">
+                        </div>
+                    <div class="central-info">
+                        <h2 id="level-title">1/5</h2>
+                        <p id="area-palabra">Pulsa "Empezar"</p>
+                    </div>
+                    <div class="music-toggle">
+                        <button id="btn-music">🎵 Música: <span id="music-status">OFF</span></button>
+                    </div>
+                </div>
 
-        <footer>
-            <button id="btn-inicio">Comenzar</button>
-            <button id="btn-detener" disabled>Detener</button>
-        </footer>
+                <div class="grid" id="game-grid">
+                    <div class="cell" id="c0"><span></span></div>
+                    <div class="cell" id="c1"><span></span></div>
+                    <div class="cell" id="c2"><span></span></div>
+                    <div class="cell" id="c3"><span></span></div>
+                    <div class="cell" id="c4"><span></span></div>
+                    <div class="cell" id="c5"><span></span></div>
+                    <div class="cell" id="c6"><span></span></div>
+                    <div class="cell" id="c7"><span></span></div>
+                </div>
+            </main>
+        </div>
     </div>
 
     <audio id="musica-fondo" loop>
-        <source src="tu-audio.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <script src="codigo.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
