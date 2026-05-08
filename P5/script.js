@@ -1,49 +1,59 @@
 // ==========================================
-// BOT LEAGUE - LÓGICA PRINCIPAL DEL JUEGO
+// BOT LEAGUE - LÓGICA PRINCIPAL DEL JUEGO (ES5 COMPATIBLE)
 // ==========================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+document.addEventListener('DOMContentLoaded', function() {
+    var canvas = document.getElementById('gameCanvas');
+    var ctx = canvas.getContext('2d');
     
-    const screens = {
+    var screens = {
         menu: document.getElementById('menu-screen'),
         hud: document.getElementById('hud'),
         message: document.getElementById('message-screen'),
         gameOver: document.getElementById('game-over-screen')
     };
     
-    const elements = {
+    var elements = {
         scorePlayer: document.getElementById('score-player'),
         scoreEnemy: document.getElementById('score-enemy'),
         mainMsg: document.getElementById('main-message'),
         endTitle: document.getElementById('end-title')
     };
 
-    const btn3Goals = document.getElementById('btn-3goals');
-    const btnGolden = document.getElementById('btn-golden');
-    const btnRestart = document.getElementById('btn-restart');
+    var btn3Goals = document.getElementById('btn-3goals');
+    var btnGolden = document.getElementById('btn-golden');
+    var btnRestart = document.getElementById('btn-restart');
 
     if (!canvas || !btn3Goals) {
         console.error("Error: Faltan elementos en el HTML. Revisa los IDs.");
         return;
     }
 
-    const STATE = { MENU: 0, COUNTDOWN: 1, PLAYING: 2, GOAL: 3, END: 4 };
-    let currentState = STATE.MENU;
-    let gameMode = '3_GOALS';
-    let score = { player: 0, bot: 0 };
+    var STATE = { MENU: 0, COUNTDOWN: 1, PLAYING: 2, GOAL: 3, END: 4 };
+    var currentState = STATE.MENU;
+    var gameMode = '3_GOALS';
+    var score = { player: 0, bot: 0 };
     
-    const keys = { w: false, a: false, s: false, d: false, space: false };
+    var keys = { w: false, a: false, s: false, d: false, space: false };
 
-    const goalWidth = 150;
-    const goalDepth = 20;
+    var goalWidth = 150;
+    var goalDepth = 20;
 
-    let player = { x: 200, y: 300, vx: 0, vy: 0, speed: 4, radius: 15, color: '#3498db' };
-    let bot = { x: 600, y: 300, vx: 0, vy: 0, speed: 2.2, radius: 15, color: '#e74c3c' }; 
-    let ball = { x: 400, y: 300, vx: 0, vy: 0, radius: 10, color: '#ffffff', friction: 0.96 };
+    // ================= ENTIDADES =================
+    
+    var player = { x: 200, y: 300, vx: 0, vy: 0, speed: 4, radius: 15, color: '#3498db' };
+    var aliado = { x: 200, y: 150, vx: 0, vy: 0, speed: 2, radius: 15, color: '#85c1e9' }; 
+    
+    var bot = { x: 600, y: 300, vx: 0, vy: 0, speed: 2.2, radius: 15, color: '#e74c3c' }; 
+    var bot2 = { x: 600, y: 450, vx: 0, vy: 0, speed: 1.8, radius: 15, color: '#c0392b' }; 
 
-    window.addEventListener('keydown', (e) => {
+    var personajes = [player, aliado, bot, bot2];
+
+    var ball = { x: 400, y: 300, vx: 0, vy: 0, radius: 10, color: '#ffffff', friction: 0.96 };
+
+    // ================= CONTROLES =================
+
+    window.addEventListener('keydown', function(e) {
         if (e.key === 'w' || e.key === 'ArrowUp') keys.w = true;
         if (e.key === 'a' || e.key === 'ArrowLeft') keys.a = true;
         if (e.key === 's' || e.key === 'ArrowDown') keys.s = true;
@@ -51,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === ' ') keys.space = true;
     });
 
-    window.addEventListener('keyup', (e) => {
+    window.addEventListener('keyup', function(e) {
         if (e.key === 'w' || e.key === 'ArrowUp') keys.w = false;
         if (e.key === 'a' || e.key === 'ArrowLeft') keys.a = false;
         if (e.key === 's' || e.key === 'ArrowDown') keys.s = false;
@@ -59,13 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === ' ') keys.space = false;
     });
 
-    btn3Goals.addEventListener('click', () => startGame('3_GOALS'));
-    btnGolden.addEventListener('click', () => startGame('GOLDEN'));
+    btn3Goals.addEventListener('click', function() { startGame('3_GOALS'); });
+    btnGolden.addEventListener('click', function() { startGame('GOLDEN'); });
     btnRestart.addEventListener('click', backToMenu);
 
+    // ================= LÓGICA DE PARTIDA =================
+
     function resetPositions() {
-        player.x = 200; player.y = 300; player.vx = 0; player.vy = 0;
-        bot.x = 600; bot.y = 300; bot.vx = 0; bot.vy = 0;
+        player.x = 200; player.y = 300;
+        aliado.x = 200; aliado.y = 150;
+        bot.x = 600; bot.y = 300;
+        bot2.x = 600; bot2.y = 450;
+        
+        personajes.forEach(function(p) { p.vx = 0; p.vy = 0; });
         ball.x = 400; ball.y = 300; ball.vx = 0; ball.vy = 0;
     }
 
@@ -83,10 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function startCountdown() {
         currentState = STATE.COUNTDOWN;
         screens.message.classList.remove('hidden');
-        let count = 3;
+        var count = 3;
         elements.mainMsg.innerText = count;
 
-        const interval = setInterval(() => {
+        var interval = setInterval(function() {
             count--;
             if (count > 0) {
                 elements.mainMsg.innerText = count;
@@ -101,10 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleGoal(scorer) {
-        if (currentState === STATE.GOAL) return; // Previene contar el mismo gol varias veces
+        if (currentState === STATE.GOAL) return; 
         currentState = STATE.GOAL;
         
-        // Frenar la pelota al entrar
         ball.vx = 0; ball.vy = 0; 
 
         if (scorer === 'player') score.player++;
@@ -114,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         screens.message.classList.remove('hidden');
         elements.mainMsg.innerText = scorer === 'player' ? '¡GOOOL!' : '¡Gol Rival!';
 
-        setTimeout(() => {
+        setTimeout(function() {
             if (checkWinCondition()) {
                 endGame(scorer === 'player');
             } else {
@@ -151,41 +166,56 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.scoreEnemy.innerText = score.bot;
     }
 
-    // ================= FÍSICA CORREGIDA ================= //
+    // ================= FÍSICA Y MOVIMIENTO ================= //
 
-    function resolveCollision(ent1, ent2, isBall = false) {
-        let dx = ent2.x - ent1.x;
-        let dy = ent2.y - ent1.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+    function perseguirPelota(personaje) {
+        var dx = ball.x - personaje.x;
+        var dy = ball.y - personaje.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
         
-        if (distance === 0) { dx = 1; distance = 1; } // Evita bugs si aparecen exactamente en el mismo pixel
+        if (dist > 0) {
+            personaje.vx = (dx / dist) * personaje.speed;
+            personaje.vy = (dy / dist) * personaje.speed;
+        }
+        personaje.x += personaje.vx;
+        personaje.y += personaje.vy;
+    }
 
-        const minDistance = ent1.radius + ent2.radius;
+    function resolveCollision(ent1, ent2, isBall) {
+        // Validación de parámetro por defecto (estilo ES5)
+        if (isBall === undefined) { 
+            isBall = false; 
+        }
+
+        var dx = ent2.x - ent1.x;
+        var dy = ent2.y - ent1.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance === 0) { dx = 1; distance = 1; } 
+
+        var minDistance = ent1.radius + ent2.radius;
 
         if (distance < minDistance) {
-            const nx = dx / distance;
-            const ny = dy / distance;
-            const overlap = minDistance - distance;
+            var nx = dx / distance;
+            var ny = dy / distance;
+            var overlap = minDistance - distance;
             
             if (isBall) {
-                // Separación: Empuja la pelota fuera del jugador para que no se atasque
                 ent2.x += nx * overlap;
                 ent2.y += ny * overlap;
                 
-                // Transferencia de velocidad controlada (Evita que salga a la velocidad de la luz)
-                const speedTransfer = 0.6;
+                var speedTransfer = 0.6;
                 ent2.vx += ent1.vx * speedTransfer + nx * 1.5;
                 ent2.vy += ent1.vy * speedTransfer + ny * 1.5;
 
-                // Límite máximo de velocidad de la pelota
-                const maxSpeed = 12;
-                const currentSpeed = Math.sqrt(ent2.vx**2 + ent2.vy**2);
+                var maxSpeed = 12;
+                // Uso de Math.pow en lugar de **
+                var currentSpeed = Math.sqrt(Math.pow(ent2.vx, 2) + Math.pow(ent2.vy, 2));
                 if (currentSpeed > maxSpeed) {
                     ent2.vx = (ent2.vx / currentSpeed) * maxSpeed;
                     ent2.vy = (ent2.vy / currentSpeed) * maxSpeed;
                 }
             } else {
-                // Choque entre jugadores: Se empujan a partes iguales
                 ent1.x -= nx * (overlap / 2);
                 ent1.y -= ny * (overlap / 2);
                 ent2.x += nx * (overlap / 2);
@@ -197,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updatePhysics() {
         if (currentState !== STATE.PLAYING) return;
 
-        // Movimiento Jugador
+        // 1. Movimiento del Jugador
         player.vx = 0; player.vy = 0;
         if (keys.w) player.vy = -player.speed;
         if (keys.s) player.vy = player.speed;
@@ -212,23 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
         player.x += player.vx;
         player.y += player.vy;
 
-        // Movimiento Bot
-        const dxBotBall = ball.x - bot.x;
-        const dyBotBall = ball.y - bot.y;
-        const distBotBall = Math.sqrt(dxBotBall**2 + dyBotBall**2);
-        
-        if (distBotBall > 0) {
-            bot.vx = (dxBotBall / distBotBall) * bot.speed;
-            bot.vy = (dyBotBall / distBotBall) * bot.speed;
-        }
-        bot.x += bot.vx;
-        bot.y += bot.vy;
+        // 2. Movimiento de los Bots
+        perseguirPelota(aliado);
+        perseguirPelota(bot);
+        perseguirPelota(bot2);
 
-        // Chutar la pelota
+        // 3. Chutar la pelota
         if (keys.space) {
-            const dx = ball.x - player.x;
-            const dy = ball.y - player.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
+            var dx = ball.x - player.x;
+            var dy = ball.y - player.y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < player.radius + ball.radius + 20) { 
                 ball.vx += (dx / dist) * 10;
                 ball.vy += (dy / dist) * 10;
@@ -236,31 +259,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Fricción pelota
+        // 4. Fricción pelota
         ball.vx *= ball.friction;
         ball.vy *= ball.friction;
         ball.x += ball.vx;
         ball.y += ball.vy;
 
-        resolveCollision(player, bot);
-        resolveCollision(player, ball, true);
-        resolveCollision(bot, ball, true);
+        // 5. Comprobar choques (Todos contra Todos)
+        for (var i = 0; i < personajes.length; i++) {
+            for (var j = i + 1; j < personajes.length; j++) {
+                resolveCollision(personajes[i], personajes[j]); 
+            }
+            resolveCollision(personajes[i], ball, true); 
+        }
 
-        // Control de Límites Corregido
-        const constrainEntity = (ent, isBall = false) => {
-            // Techo y suelo para todos
+        // 6. Límites de la pantalla
+        var constrainEntity = function(ent, isBall) {
+            if (isBall === undefined) { 
+                isBall = false; 
+            }
+
             if (ent.y < ent.radius) { ent.y = ent.radius; ent.vy *= -0.8; }
             if (ent.y > canvas.height - ent.radius) { ent.y = canvas.height - ent.radius; ent.vy *= -0.8; }
             
-            // Detectar si está en la zona de gol (Y)
-            const inGoalY = ent.y > (canvas.height/2 - goalWidth/2 + ent.radius) && ent.y < (canvas.height/2 + goalWidth/2 - ent.radius);
+            var inGoalY = ent.y > (canvas.height/2 - goalWidth/2 + ent.radius) && ent.y < (canvas.height/2 + goalWidth/2 - ent.radius);
             
             if (!isBall) {
-                // Jugador y Bot NUNCA pueden salir por los lados
                 if (ent.x < ent.radius) { ent.x = ent.radius; ent.vx = 0; }
                 if (ent.x > canvas.width - ent.radius) { ent.x = canvas.width - ent.radius; ent.vx = 0; }
             } else {
-                // La pelota sí puede salir si está en la zona de gol
                 if (!inGoalY) {
                     if (ent.x < ent.radius) { ent.x = ent.radius; ent.vx *= -0.8; }
                     if (ent.x > canvas.width - ent.radius) { ent.x = canvas.width - ent.radius; ent.vx *= -0.8; }
@@ -268,11 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        constrainEntity(player, false);
-        constrainEntity(bot, false);
+        personajes.forEach(function(p) { constrainEntity(p, false); });
         constrainEntity(ball, true);
 
-        // Detección de Goles (Solo si cruza completamente la línea)
+        // 7. Detección de Goles
         if (ball.x < -ball.radius) handleGoal('bot');
         else if (ball.x > canvas.width + ball.radius) handleGoal('player');
     }
@@ -322,14 +348,14 @@ document.addEventListener('DOMContentLoaded', () => {
         drawField();
         
         if (currentState !== STATE.MENU) {
-            drawEntity(player);
-            drawEntity(bot);
-            drawEntity(ball);
+            
+            personajes.forEach(drawEntity); 
+            drawEntity(ball); 
 
             if (player.vx !== 0 || player.vy !== 0) {
                 ctx.beginPath();
                 ctx.moveTo(player.x, player.y);
-                const angle = Math.atan2(player.vy, player.vx);
+                var angle = Math.atan2(player.vy, player.vx);
                 ctx.lineTo(player.x + Math.cos(angle) * (player.radius + 10), player.y + Math.sin(angle) * (player.radius + 10));
                 ctx.strokeStyle = '#f1c40f';
                 ctx.lineWidth = 3;
